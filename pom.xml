@@ -12,18 +12,13 @@
   <!-- 添加依赖 -->
 	<dependencies>
 		<dependency>
-			<groupId>com.taotao</groupId>
-			<artifactId>taotao-common</artifactId>
+			<groupId>henu.exam</groupId>
+			<artifactId>exam-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<modules>
-		<module>taotao-manager-pojo</module>
-		<module>taotao-manager-mapper</module>
-		<module>taotao-manager-service</module>
-		<module>taotao-manager-web</module>
 		<module>exam-manager-pojo</module>
-		<module>exam-manaer-mapper</module>
 		<module>exam-manager-mapper</module>
 		<module>exam-manager-service</module>
 		<module>exam-manager-web</module>
@@ -33,7 +28,7 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat8.5-maven-plugin</artifactId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
 				<configuration>
 					<port>8080</port>
 					<path>/</path>

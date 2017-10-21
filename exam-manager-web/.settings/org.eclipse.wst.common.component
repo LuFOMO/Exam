@@ -13,6 +13,9 @@
         <dependent-module archiveName="exam-manager-pojo-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/exam-manager-pojo/exam-manager-pojo">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="exam-common-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/exam-common/exam-common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="exam-manager-web"/>
         <property name="java-output-path" value="/exam-manager-web/target/classes"/>
     </wb-module>
