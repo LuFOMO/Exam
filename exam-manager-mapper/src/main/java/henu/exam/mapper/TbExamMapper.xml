@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="henu.exam.mapper.TbExamMapper" >
+  <resultMap id="BaseResultMap" type="henu.exam.pojo.TbExam" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="student_num" property="studentNum" jdbcType="INTEGER" />
+    <result column="teachname" property="teachname" jdbcType="VARCHAR" />
+    <result column="starttime" property="starttime" jdbcType="DATE" />
+    <result column="autostart" property="autostart" jdbcType="VARCHAR" />
+    <result column="started" property="started" jdbcType="VARCHAR" />
+    <result column="finished" property="finished" jdbcType="VARCHAR" />
+    <result column="archived" property="archived" jdbcType="VARCHAR" />
+    <result column="cleaned" property="cleaned" jdbcType="VARCHAR" />
+    <result column="exampaper" property="exampaper" jdbcType="VARCHAR" />
+    <result column="paper_url" property="paperUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, NAME, student_num, teachname, starttime, autostart, started, finished, archived, 
+    cleaned, exampaper, paper_url
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="henu.exam.pojo.TbExamExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_exam
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_exam
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_exam
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="henu.exam.pojo.TbExamExample" >
+    delete from tb_exam
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="henu.exam.pojo.TbExam" >
+    insert into tb_exam (id, NAME, student_num, 
+      teachname, starttime, autostart, 
+      started, finished, archived, 
+      cleaned, exampaper, paper_url
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{studentNum,jdbcType=INTEGER}, 
+      #{teachname,jdbcType=VARCHAR}, #{starttime,jdbcType=DATE}, #{autostart,jdbcType=VARCHAR}, 
+      #{started,jdbcType=VARCHAR}, #{finished,jdbcType=VARCHAR}, #{archived,jdbcType=VARCHAR}, 
+      #{cleaned,jdbcType=VARCHAR}, #{exampaper,jdbcType=VARCHAR}, #{paperUrl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="henu.exam.pojo.TbExam" >
+    insert into tb_exam
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="studentNum != null" >
+        student_num,
+      </if>
+      <if test="teachname != null" >
+        teachname,
+      </if>
+      <if test="starttime != null" >
+        starttime,
+      </if>
+      <if test="autostart != null" >
+        autostart,
+      </if>
+      <if test="started != null" >
+        started,
+      </if>
+      <if test="finished != null" >
+        finished,
+      </if>
+      <if test="archived != null" >
+        archived,
+      </if>
+      <if test="cleaned != null" >
+        cleaned,
+      </if>
+      <if test="exampaper != null" >
+        exampaper,
+      </if>
+      <if test="paperUrl != null" >
+        paper_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="studentNum != null" >
+        #{studentNum,jdbcType=INTEGER},
+      </if>
+      <if test="teachname != null" >
+        #{teachname,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=DATE},
+      </if>
+      <if test="autostart != null" >
+        #{autostart,jdbcType=VARCHAR},
+      </if>
+      <if test="started != null" >
+        #{started,jdbcType=VARCHAR},
+      </if>
+      <if test="finished != null" >
+        #{finished,jdbcType=VARCHAR},
+      </if>
+      <if test="archived != null" >
+        #{archived,jdbcType=VARCHAR},
+      </if>
+      <if test="cleaned != null" >
+        #{cleaned,jdbcType=VARCHAR},
+      </if>
+      <if test="exampaper != null" >
+        #{exampaper,jdbcType=VARCHAR},
+      </if>
+      <if test="paperUrl != null" >
+        #{paperUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="henu.exam.pojo.TbExamExample" resultType="java.lang.Integer" >
+    select count(*) from tb_exam
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_exam
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentNum != null" >
+        student_num = #{record.studentNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.teachname != null" >
+        teachname = #{record.teachname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starttime != null" >
+        starttime = #{record.starttime,jdbcType=DATE},
+      </if>
+      <if test="record.autostart != null" >
+        autostart = #{record.autostart,jdbcType=VARCHAR},
+      </if>
+      <if test="record.started != null" >
+        started = #{record.started,jdbcType=VARCHAR},
+      </if>
+      <if test="record.finished != null" >
+        finished = #{record.finished,jdbcType=VARCHAR},
+      </if>
+      <if test="record.archived != null" >
+        archived = #{record.archived,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cleaned != null" >
+        cleaned = #{record.cleaned,jdbcType=VARCHAR},
+      </if>
+      <if test="record.exampaper != null" >
+        exampaper = #{record.exampaper,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paperUrl != null" >
+        paper_url = #{record.paperUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_exam
+    set id = #{record.id,jdbcType=INTEGER},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      student_num = #{record.studentNum,jdbcType=INTEGER},
+      teachname = #{record.teachname,jdbcType=VARCHAR},
+      starttime = #{record.starttime,jdbcType=DATE},
+      autostart = #{record.autostart,jdbcType=VARCHAR},
+      started = #{record.started,jdbcType=VARCHAR},
+      finished = #{record.finished,jdbcType=VARCHAR},
+      archived = #{record.archived,jdbcType=VARCHAR},
+      cleaned = #{record.cleaned,jdbcType=VARCHAR},
+      exampaper = #{record.exampaper,jdbcType=VARCHAR},
+      paper_url = #{record.paperUrl,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="henu.exam.pojo.TbExam" >
+    update tb_exam
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="studentNum != null" >
+        student_num = #{studentNum,jdbcType=INTEGER},
+      </if>
+      <if test="teachname != null" >
+        teachname = #{teachname,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        starttime = #{starttime,jdbcType=DATE},
+      </if>
+      <if test="autostart != null" >
+        autostart = #{autostart,jdbcType=VARCHAR},
+      </if>
+      <if test="started != null" >
+        started = #{started,jdbcType=VARCHAR},
+      </if>
+      <if test="finished != null" >
+        finished = #{finished,jdbcType=VARCHAR},
+      </if>
+      <if test="archived != null" >
+        archived = #{archived,jdbcType=VARCHAR},
+      </if>
+      <if test="cleaned != null" >
+        cleaned = #{cleaned,jdbcType=VARCHAR},
+      </if>
+      <if test="exampaper != null" >
+        exampaper = #{exampaper,jdbcType=VARCHAR},
+      </if>
+      <if test="paperUrl != null" >
+        paper_url = #{paperUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="henu.exam.pojo.TbExam" >
+    update tb_exam
+    set NAME = #{name,jdbcType=VARCHAR},
+      student_num = #{studentNum,jdbcType=INTEGER},
+      teachname = #{teachname,jdbcType=VARCHAR},
+      starttime = #{starttime,jdbcType=DATE},
+      autostart = #{autostart,jdbcType=VARCHAR},
+      started = #{started,jdbcType=VARCHAR},
+      finished = #{finished,jdbcType=VARCHAR},
+      archived = #{archived,jdbcType=VARCHAR},
+      cleaned = #{cleaned,jdbcType=VARCHAR},
+      exampaper = #{exampaper,jdbcType=VARCHAR},
+      paper_url = #{paperUrl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

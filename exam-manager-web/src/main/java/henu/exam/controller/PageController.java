@@ -14,8 +14,8 @@ public class PageController {
 	
 	
 //	/WEB-INF/jsp/teacher/login.jsp
-	@RequestMapping("/{page}")
-	public String showPage(@PathVariable String page){
-		return "teacher/"+page;
+	@RequestMapping("/{page1}/{page2}")
+	public String showPage(@PathVariable String page1, @PathVariable String page2){
+		return page1+"/"+page2;
 	}
 }
