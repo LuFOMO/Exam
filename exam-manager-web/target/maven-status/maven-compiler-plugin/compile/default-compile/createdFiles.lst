@@ -1,1 +1,7 @@
+henu\exam\controller\ManageSystemConfigController.class
+henu\exam\controller\AdminExamManageController.class
 henu\exam\controller\PageController.class
+henu\exam\controller\AdminBasicController.class
+henu\exam\controller\StudentLoginController.class
+henu\exam\controller\TeacherBasicController.class
+henu\exam\controller\TeacherManagerController.class

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="header.jsp"%>
+<jsp:include page="header.jsp" />
 
 <form class="exam-form form-inline" action="teacher_manage_notify_add"
 	method="post">
@@ -33,4 +33,4 @@
 	</div>
 </div>
 
-<%@ include file="footer.jsp"%>
+<jsp:include page="footer.jsp" />

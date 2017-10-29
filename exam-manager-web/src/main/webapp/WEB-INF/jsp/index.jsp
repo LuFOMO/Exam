@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,24 +9,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
-<s:if test="#application.exam==null">
-	<meta http-equiv="refresh" content="60">
-</s:if>
-<!-- Le styles -->
-<link href="assets/css/bootstrap.css" rel="stylesheet">
-<link href="assets/css/exam.css" rel="stylesheet">
+
+<link href="css/bootstrap/bootstrap.css" rel="stylesheet">
+<link href="css/exam/exam.css" rel="stylesheet">
+<link href="css/bootstrap/bootstrap-responsive.css" rel="stylesheet">
+
 <style>
 body {
 	padding-top: 60px;
 	/* 60px to make the container go all the way to the bottom of the topbar */
 }
 </style>
-<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
 
-<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 9]>
-  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
 </head>
 
 <body>
@@ -43,14 +38,14 @@ body {
 					<div class="row vertical-center">
 						<div class="exam-login">
 							<h3>
-								<img class="img-circle" src="assets/img/exam-teacher.png" />
+								<img class="img-circle" src="/img/exam/exam-teacher.png" />
 								教师登录
 							</h3>
 
-							<form class="exam-form" action="teacher_login" method="post">
+							<form class="exam-form" action="/teacher/login" method="post">
 								<p>
-									<input type="text" name="name" placeholder="用户名" /> <br /> <input
-										type="password" name="pass" placeholder="口令" />
+									<input type="text" name="name" placeholder="用户名" /> <br />
+									<input type="password" name="pass" placeholder="口令" />
 								</p>
 								<p>
 									<input type="submit" class="btn btn-primary" value="登录"
@@ -66,11 +61,11 @@ body {
 					<div class="row vertical-center">
 						<div class="exam-login">
 							<h3>
-								<img class="img-circle" src="assets/img/exam-admin.png" />
+								<img class="img-circle" src="/img/exam/exam-admin.png" />
 								管理员登录
 							</h3>
 
-							<form class="exam-form" action="admin_login" method="post">
+							<form class="exam-form" action="/admin/login" method="post">
 								<p>
 									<input type="text" name="name" placeholder="用户名" /> <br /> <input
 										type="password" name="pass" placeholder="口令" />
@@ -87,37 +82,25 @@ body {
 			<div class="tab-pane fade in active" id="student">
 				<div class="container">
 					<div class="exam-info">
-						<s:if test="#application.exam==null">
-							<h4>当前没有进行中的考试，不能登录。</h4>
-						</s:if>
-						<s:else>
-							<h4><strong><s:property value="#application.exam" /></strong>正在进行中，请输入学号和姓名登录。</h4>
-						</s:else>
+							<h4 id="notLogin">当前没有进行中的考试，不能登录。</h4>
+							<h4 id="login">考试正在进行，请输入学号和姓名登录。</h4>
 					</div>
-
-						<s:actionerror/>
 					<div class="row vertical-center">
 						<div class="exam-login">
 							<h3>
-								<img class="img-circle" src="assets/img/exam-student.png" />
+								<img class="img-circle" src="/img/exam/exam-student.png" />
 								学生登录
 							</h3>
 
-							<form class="exam-form" action="student_login" method="post">
+							<form class="exam-form" action="/student/login" method="post">
 								<p>
-									<input type="text" name="sno" placeholder="学号" />
+									<input type="text" name="sid" placeholder="学号" />
 									<br />
-									<input type="text" name="sname" placeholder="姓名" />
+									<input type="text" name="name" placeholder="姓名" />
 								</p>
 								<p>
-									<s:if test="#application.exam!=null">
-										<input type="submit" class="btn btn-primary" value="登录"
-											style="width: 100%" />
-									</s:if>
-									<s:else>
-										<input type="submit" class="btn disabled" onclick="return false" value="登录"
-											style="width: 100%" />
-									</s:else>
+									<input type="submit" id="studentLogin" class="btn" value="登录" 
+										style="width: 100%" />
 								</p>
 							</form>
 						</div>
@@ -128,7 +111,22 @@ body {
 	</div>
 	<!-- /container -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<SCRIPT src="assets/js/jquery.min.js"></SCRIPT>
-	<SCRIPT src="assets/js/bootstrap.min.js"></SCRIPT>
+	<script src="js/jquery/jquery.min.js"></script>
+	<script src="js/bootstrap/bootstrap.min.js"></script>
+	
+	<!-- 判断学生是否可以登录 -->
+	<script type="text/javascript">
+		$.post("/exam/get", function(data){
+			if(data.status==200){
+				$("#notLogin").hide();
+				$("#studentLogin").addClass("btn-primary");
+			}else{
+				$("#login").hide();
+				$("#studentLogin").addClass("btn-disabled");
+				$("#studentLogin").attr("disabled", true); 
+			}
+		})
+	</script>
+	
 </body>
 </html>

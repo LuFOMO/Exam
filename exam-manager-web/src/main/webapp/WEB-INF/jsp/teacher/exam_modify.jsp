@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="header.jsp" %>
+<jsp:include page="header.jsp" />
 
-<form class="exam-form form-inline" action="teacher_exam_update" method="post">
+<form class="exam-form form-inline" action="/teacher/exam/update" method="post">
 	<h4>编辑考试信息</h4>
 	<input type="hidden" name="id" value="<s:property value="exam.id"/>">
 	考试名称：
@@ -74,7 +74,9 @@
 	</s:else>
 </form>
 
-<%@ include file="footer.jsp" %>
+<jsp:include page="footer.jsp" />
+
+
 <script type="text/javascript">
 $("#datetimepicker").datetimepicker({
     format: "yyyy-mm-dd hh:ii",

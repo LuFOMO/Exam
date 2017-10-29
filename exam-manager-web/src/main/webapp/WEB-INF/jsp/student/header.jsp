@@ -8,24 +8,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
-	<s:head/>
-	<sj:head/>
 
-<!-- le styles -->
-<link href="/css/bootstrap.css" rel="stylesheet">
-<link href="/css/exam.css" rel="stylesheet">
 <style>
 body {
 	padding-top: 60px;
 	/* 60px to make the container go all the way to the bottom of the topbar */
 }
 </style>
-<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
-
-<!-- le html5 shim, for ie6-8 support of html5 elements -->
-<!--[if lt ie 9]>
-  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
+<link href="../css/bootstrap-responsive.css" rel="stylesheet">
+<link href="../css/bootstrap/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../js/easyui/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css" href="../js/easyui/themes/icon.css" />
+<link href="../css/exam/exam.css" rel="stylesheet">
 </head>
 
 <body>
@@ -36,12 +30,11 @@ body {
 				<span class="brand"><strong>上机考试系统</strong></span>
 
 				<ul class="nav navbar-nav">
-					<li><a href="student_main"><i class="icon-home icon-white"></i>首页</a></li>
-					<li><a href="student_exam_listdir"><i class="icon-eye-open icon-white"></i>查看提交</a></li>
+					<li><a href="main"><i class="icon-home icon-white"></i>首页</a></li>
+					<li><a href="listdir"><i class="icon-eye-open icon-white"></i>查看提交</a></li>
 				</ul>
 				<ul class="nav navbar-nav pull-right">
-					<li><span class="brand"><small>欢迎，<s:property
-							value="#session.student" /></small></span></li>
+					<li><span class="brand"><small>欢迎，${name }</small></span></li>
 				</ul>
 
 				<!--/.nav-collapse -->
@@ -51,5 +44,6 @@ body {
 
 	<div class="container">
 		<h1>
-			<img src="assets/img/exam-student.png" /> <s:property value="#application.exam" /> 上机考试中...
+			<img src="../img/exam/exam-student.png" /> 上机考试中...
 		</h1>
+	</div>

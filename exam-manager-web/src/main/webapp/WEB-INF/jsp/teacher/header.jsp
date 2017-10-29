@@ -9,22 +9,18 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<!-- le styles -->
-<link href="/css/bootstrap.css" rel="stylesheet">
-<link href="/css/bootstrap-datetimepicker.css" rel="stylesheet">
-<link href="/css/exam.css" rel="stylesheet">
 <style>
 body {
 	padding-top: 60px;
 	/* 60px to make the container go all the way to the bottom of the topbar */
 }
 </style>
-<link href="/css/bootstrap-responsive.css" rel="stylesheet">
-
-<!-- le html5 shim, for ie6-8 support of html5 elements -->
-<!--[if lt ie 9]>
-  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
+<link href="../css/bootstrap/bootstrap.css" rel="stylesheet">
+<link href="../css/bootstrap/bootstrap-datetimepicker.css" rel="stylesheet">
+<link href="../css/bootstrap/bootstrap-responsive.css" rel="stylesheet">
+<link href="../css/exam/exam.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../js/easyui/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css" href="../js/easyui/themes/icon.css" />
 </head>
 
 <body>
@@ -41,20 +37,19 @@ body {
 						aria-expanded="false" aria-haspopup="true" href="#"
 						data-toggle="dropdown"><i class="icon-time icon-white"></i>考中管理<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="teacher_manage_summary"><i class="icon-align-justify"></i>考试概况</a></li>
-							<li><a href="teacher/manage/student"><i class="icon-list"></i>学生信息</a></li>
-							<li><a href="teacher_manage_unlock"><i class="icon-lock"></i>解除锁定</a></li>
-							<li><a href="teacher_manage_notify"><i class="icon-bell"></i>通知管理</a></li>
+							<li><a href="manage_summary"><i class="icon-align-justify"></i>考试概况</a></li>
+							<li><a href="manage_student"><i class="icon-list"></i>学生信息</a></li>
+							<li><a href="manage_unlock"><i class="icon-lock"></i>解除锁定</a></li>
+							<li><a href="manage_notify"><i class="icon-bell"></i>通知管理</a></li>
 						</ul>
 					</li>
-					<li><a href="teacher_exam_after"><i class="icon-check icon-white"></i>考后操作</a></li>
+					<li><a href="exam_after"><i class="icon-check icon-white"></i>考后操作</a></li>
 				</ul>
 				<ul class="nav navbar-nav pull-right">
-					<li><span class="brand"><small>欢迎，<s:property
-									value="#session.teacher" /></small></span></li>
+					<li><span class="brand"><small>欢迎，${name }</small></span></li>
 					<li><a href="#" data-toggle="modal"
 		data-target=".bs-example-modal-sm"><i class="icon-pencil icon-white"></i>修改口令</a></li>
-					<li><a href="admin_logout"><i class="icon-share icon-white"></i>退出</a></li>
+					<li><a href="/teacher/logout"><i class="icon-share icon-white"></i>退出</a></li>
 				</ul>
 
 				<!--/.nav-collapse -->
@@ -74,15 +69,18 @@ body {
 					<h4 class="modal-title">修改口令</h4>
 				</div>
 				<div class="modal-body">
-				<form class="exam-form" action="teacher_passwd" method="post">
+				<form id="editPass" class="exam-form" action="/teacher/passwd/edit" method="post">
 					<p>
+						<input type="hidden" name="name" value=${name } style="width:100%"/>
+						<br/>
 						<input type="password" name="oldpass" placeholder="原口令" style="width:100%"/>
 						<br/>
-						<input type="password" name="newpass1" placeholder="新口令" style="width:100%"/>
+						<input type="password" id="pass1" name="newpass1" placeholder="新口令" style="width:100%"/>
 						<br/>
-						<input type="password" name="newpass2" placeholder="重输新口令" style="width:100%"/>
+						<input type="password" id="pass2" name="newpass2" placeholder="重输新口令" style="width:100%"/>
 						<br/>
-						<input type="submit" class="btn btn-primary" value="修改" style="width:100%"/>
+						<input type="submit" class="btn btn-primary" value="修改" style="width:100%" onclick="editPassword"/>
+						<span id="span1"></span>
 					</p>
 				</form>
 				</div>
@@ -92,5 +90,20 @@ body {
 
 	<div class="container">
 		<h1>
-			<img src="assets/img/exam-teacher.png" /> 上机考试管理
+			<img src="../img/exam/exam-teacher.png" /> 上机考试管理
 		</h1>
+	</div>
+	
+	<script src="../js/jquery/jquery.min.js"></script>
+	
+	<script type="text/javascript">
+	$(function(){
+		$("#pass2").blur(function(){
+			var $pass1 = $("#pass1").val();
+			var $pass2 = $("#pass2").val();
+			if($pass1!=$pass2){
+				$("#span1").html("<font color='red'>两次密码不一致</font>");
+			}
+		});
+	});
+</script>

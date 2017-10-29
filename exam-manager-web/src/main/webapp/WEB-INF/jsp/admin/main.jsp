@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="header.jsp" %>
-
+<jsp:include page="header.jsp" />
 <div class="container-fluid">
 	<div class="row-fluid">
 		<div class="span4 exam-desc">
@@ -36,4 +35,4 @@
 	</div>
 </div>
 
-<%@ include file="footer.jsp" %>
+<jsp:include page="footer.jsp" />

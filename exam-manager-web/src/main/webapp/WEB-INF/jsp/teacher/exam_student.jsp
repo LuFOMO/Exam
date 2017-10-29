@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="header.jsp"%>
+<jsp:include page="header.jsp" />
 
 <p class="exam-info">完成学生名单的导入和修改后，
 	<a class="btn" href="teacher_exam_modify?id=<s:property value="eid" />"><i class="icon-edit"></i>返回编辑</a>
@@ -122,4 +122,4 @@
 		class="btn btn-primary" value="导入" />
 </form>
 
-<%@ include file="footer.jsp"%>
+<jsp:include page="footer.jsp" />
