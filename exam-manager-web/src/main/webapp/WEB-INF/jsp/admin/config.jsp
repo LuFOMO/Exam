@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="header.jsp" />
+<section style="background-image:url('../img/exam/bg.png');" >
 
-<form id="systemconfig" class="exam-form form-horizontal" method="post">
-	<h4>修改系统配置</h4>
-	<div class="control-group">
+<div class="panel panel-default text-center" style="padding-left:500px;padding-top:50px;width:1000px;height:8ew00px;background-image:url('../img/exam/bg.png');">
+  <div class="panel-heading">
+    <h3 class="panel-title">修改系统配置</h3>
+  </div>
+  <div class="panel-body text-center">
+  <form id="systemconfig" class=" form-horizontal" method="post">
+   	<div class="control-group">
 		<label class="control-label" for="interval">后台任务间隔时间</label>
 		<div class="controls">
 			<input type="text" id="interval" name="interval" value="${config.interval }"/>
@@ -28,14 +33,14 @@
 	<div class="control-group">
 		<label class="control-label" for="minfilesize">上传文件字节数下限</label>
 		<div class="controls">
-			<input type="text" id="minfilesize" name="minfilesize" value="${config.minfilesize }"/>
+			<input type="text" id="minfilesize" name="minfilesize" value="${config.minfilesize/1024}"/>KB
 			<p class="help-block"></p>
 		</div>
 	</div>
 	<div class="control-group">
 		<label class="control-label" for="maxfilesize">上传文件字节数上限</label>
 		<div class="controls">
-			<input type="text" id="maxfilesize" name="maxfilesize" value="${config.maxfilesize }"/>
+			<input type="text" id="maxfilesize" name="maxfilesize" value="${config.maxfilesize/1024/1024}"/>MB
 			<p class="help-block"></p>
 		</div>
 	</div>
@@ -53,9 +58,13 @@
 		</div>
 	</div>
 </form>
+   
+  </div>
+</div>
+	
 
 <jsp:include page="footer.jsp" />
-
+</section>
 <script type="text/javascript">
 
 	//根据传入值判断选中单选框

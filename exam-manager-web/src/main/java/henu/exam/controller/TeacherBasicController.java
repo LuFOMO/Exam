@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import henu.exam.pojo.ExamResult;
 import henu.exam.pojo.Pass;
 import henu.exam.service.TeacherBasicService;
+import henu.exam.util.ExamResult;
 
 @SessionAttributes(value={"name"}, types=String.class)
 @Controller

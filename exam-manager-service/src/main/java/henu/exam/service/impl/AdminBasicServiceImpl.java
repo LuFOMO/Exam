@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import henu.exam.service.AdminBasicService;
+import henu.exam.util.ExamResult;
 import henu.exam.mapper.TbAdminMapper;
-import henu.exam.pojo.ExamResult;
 import henu.exam.pojo.TbAdmin;
 import henu.exam.pojo.TbAdminExample;
 import henu.exam.pojo.TbAdminExample.Criteria;
@@ -20,7 +20,7 @@ public class AdminBasicServiceImpl implements AdminBasicService{
 	private TbAdminMapper adminMapper;
 	
 	@Override
-	public boolean adminLogin(String name, String pass) {
+	public boolean adminLogin(String name, String pass) throws Exception{
 		TbAdminExample example = new TbAdminExample();
 		Criteria criteria = example.createCriteria();
 		criteria.andNameEqualTo(name);

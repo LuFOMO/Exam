@@ -7,16 +7,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import henu.exam.service.AdminTeacherManagerService;
-import henu.exam.pojo.ExamResult;
+import henu.exam.service.AdminTeacherManageService;
+import henu.exam.util.ExamResult;
+import henu.exam.util.ExceptionUtil;
 import henu.exam.pojo.TbTeacher;
 
 @Controller
 @RequestMapping("/admin")
-public class TeacherManagerController {
+public class AdminTeacherManageController {
 
 	@Autowired
-	private AdminTeacherManagerService teacherMangerService;
+	private AdminTeacherManageService teacherMangerService;
 	
 	/**
 	 * 获取教师列表
@@ -24,8 +25,14 @@ public class TeacherManagerController {
 	 */
 	@RequestMapping("/teacher/list")
 	@ResponseBody
-	public List<TbTeacher> getTeacherList(){
-		List<TbTeacher> teacherList = teacherMangerService.getTeacherList();
+	public List<TbTeacher> getTeacherList()throws Exception{
+		List<TbTeacher> teacherList = null;
+		try {
+			teacherList = teacherMangerService.getTeacherList();
+		} catch (Exception e) {
+			e.printStackTrace();
+			ExceptionUtil.getStackTrace(e);
+		}
 		return teacherList;
 	}
 	/**
@@ -35,7 +42,7 @@ public class TeacherManagerController {
 	 */
 	@RequestMapping("/teacher/add")
 	@ResponseBody
-	public ExamResult addTeacher(TbTeacher teacher){
+	public ExamResult addTeacher(TbTeacher teacher) throws Exception{
 		ExamResult result = teacherMangerService.addTeacher(teacher);
 		return result;
 	}
@@ -47,7 +54,7 @@ public class TeacherManagerController {
 	 */
 	@RequestMapping("/teacher/edit")
 	@ResponseBody
-	public ExamResult editTeacher(TbTeacher teacher){
+	public ExamResult editTeacher(TbTeacher teacher) throws Exception{
 		ExamResult result = teacherMangerService.editTeacher(teacher);
 		return result;
 	}
@@ -59,7 +66,7 @@ public class TeacherManagerController {
 	 */
 	@RequestMapping("/teacher/delete")
 	@ResponseBody
-	public ExamResult deleteTeacher(Integer[] ids){
+	public ExamResult deleteTeacher(Integer[] ids) throws Exception{
 		ExamResult result = teacherMangerService.deleteTeacher(ids);
 		return result;
 	}

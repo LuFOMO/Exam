@@ -7,16 +7,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import henu.exam.pojo.ExamResult;
 import henu.exam.pojo.SystemConfig;
-import henu.exam.service.ManageSystemConfigService;
+import henu.exam.service.AdminManageSystemConfigService;
+import henu.exam.util.ExamResult;
 
 @SessionAttributes(value="{config}", types=SystemConfig.class)
 @Controller
-public class ManageSystemConfigController {
+public class AdminManageSystemConfigController {
 
 	@Autowired
-	private ManageSystemConfigService systemConfigService;
+	private AdminManageSystemConfigService systemConfigService;
 	
 	/**
 	 * 获取配置信息

@@ -1,5 +1,7 @@
 package henu.exam.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,10 +22,11 @@ public class StudentLoginController {
 	 * @param name
 	 * @param pass
 	 * @return
+	 * @throws Exception 
 	 */
 	@RequestMapping("/student/login")
-	public String login(Model model, String sid, String name){
-		boolean flag = loginService.studentLogin(sid, name);
+	public String login(Model model, String sid, String name, HttpServletRequest request) throws Exception{
+		boolean flag = loginService.studentLogin(sid, name, request);
 		if(flag){
 			model.addAttribute("name", name);
 			return "/student/main";

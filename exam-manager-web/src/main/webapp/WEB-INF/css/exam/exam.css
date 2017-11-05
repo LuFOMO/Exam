@@ -61,7 +61,7 @@
 
 .vertical-center{
 	position: absolute;
-	top: 60%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	top: 800px;
+	left: 800px;
+	transform: translate(-50%,-50%);
 }

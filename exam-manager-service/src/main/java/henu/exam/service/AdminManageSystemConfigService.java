@@ -1,9 +1,9 @@
 package henu.exam.service;
 
-import henu.exam.pojo.ExamResult;
 import henu.exam.pojo.SystemConfig;
+import henu.exam.util.ExamResult;
 
-public interface ManageSystemConfigService {
+public interface AdminManageSystemConfigService {
 
 	/**
 	 * 获取系统配置信息

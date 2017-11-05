@@ -1,16 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<section style="background-image:url('../img/exam/bg.png');">
 <jsp:include page="header.jsp" />
-<form id="teacherAdd" class="exam-form form-inline" method="post">
-	<h4>添加教师</h4>
-	<input type="text" name="name" placeholder="用户名*" size="20" />
-	<input type="text" name="password" placeholder="初始口令*" size="20" />
-	<input type="text" name="fullname" placeholder="真实姓名" size="20" />
-	<input type="checkbox" id="ck" name="isAdmin"/> 管理员&nbsp; 
-	<input type="submit" name="action" class="btn btn-primary" value="添加" onclick="submitForm()"/>
-</form>
-
-<table class="easyui-datagrid" id="teacherList" title="教师表" 
+<br>
+<div class="panel panel-default" style="padding-top: 25px;">
+  <div class="panel-heading">
+    <h3 class="panel-title">添加教师</h3>
+  </div>
+  <div class="panel-body">
+   <form id="teacherAdd" class="form-inline" method="post">
+    	<div class="form-group">
+    	<input type="text" class="form-control" name="name" placeholder="用户名*" size="20" />
+   		</div>
+		<div class="form-group">
+ 		<input type="text" class="form-control" name="password" placeholder="初始密码*" size="20" />
+   		</div>
+   		<div class="form-group">
+   		<input type="text" class="form-control" name="fullname" placeholder="真实姓名" size="20" />
+   		</div>
+   		<div class="form-group">
+  		<input type="checkbox" id="ck" name="isAdmin"/> 管理员&nbsp; 
+   		</div>
+   		<div class="form-group">
+   		<input type="submit" name="action" class="btn btn-md btn-primary" value="添加" onclick="submitForm()"/>
+   		</div>	
+	</form>
+  </div>
+</div>
+<br>
+<br>
+<table class="easyui-datagrid" id="teacherList" title="教师信息表" 
 	data-options="singleSelect:false,collapsible:true,url:'/admin/teacher/list',method:'get', toolbar:toolbar">
 	<thead>
 		<tr>
@@ -25,37 +44,40 @@
 </table>
 
 <!-- 修改教师信息 -->
-<div id="teacherEdit" class="easyui-dialog" style="width:460px;height:360px;padding:10px 20px"
+<div id="teacherEdit" class="easyui-dialog" style="width:500px;height:300px;padding-top:50px;text-align:center"
 		closed="true" buttons="#teacherEdit-buttons">
 	<form id="editMsg" method="post">
 		<div class="control-group">
-			<label class="control-label">用户名</label>
 			<div class="controls">
+				<label class="control-label text-right">用户名：</label>
 				<input type="text" name="name" />
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">密码</label>
+		<br>
+		<div class="control-group">	
 			<div class="controls">
+				<label class="control-label text-right">密码：</label>
 				<input type="text" name="password" />
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">全名</label>
+			<br>
+		<div class="control-group">	
 			<div class="controls">
+			<label class="control-label text-right">全名：</label>
 				<input type="text" name="fullname"/>
 			</div>
 		</div>
+
 		<div class="control-group">
 			<div class="controls">
 				<label class="checkbox"> 
-					<input type="checkbox" name="isAdmin"/>管理员
+					<input type="checkbox" name="isAdmin"/>管理员：
 				</label>
 			</div>
 		</div>
 		<div class="control-group">
 			<div class="controls">
-				<input type="submit" class="btn btn-primary" value="修改" onclick="teacherEdit()"/>
+				<input type="submit" class="btn btn-md btn-primary" value="修改" onclick="teacherEdit()"/>
 			</div>
 		</div>
 	</form>	
@@ -63,7 +85,7 @@
 
 
 <jsp:include page="footer.jsp" />
-
+</section>
 <script type="text/javascript">
 	function getSelectionsIds(){
 		var teacherList = $("#teacherList");

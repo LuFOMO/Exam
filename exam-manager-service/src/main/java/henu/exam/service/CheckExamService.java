@@ -1,6 +1,6 @@
 package henu.exam.service;
 
-import henu.exam.pojo.ExamResult;
+import henu.exam.util.ExamResult;
 
 public interface CheckExamService {
 	

@@ -16,22 +16,18 @@
 <link rel="stylesheet" type="text/css" href="../js/easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="../js/easyui/themes/icon.css" />
 <link href="../css/bootstrap/bootstrap-responsive.css" rel="stylesheet">
-<style>
-body {
-	padding-top: 60px;
-	/* 60px to make the container go all the way to the bottom of the topbar */
-}
-</style>
-
+<link href="css/bootstrap/bootstrap-theme.min.css"  rel="stylesheet">
+<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://static.bootcss.com/www/assets/css/site.min.css?1509529436504" rel="stylesheet">
 </head>
 
 <body>
 
+</div>
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="navbar-inner">
-			<div class="container">
-				<span class="brand"><strong>上机考试系统</strong></span>
-				
+			<div class="container">				
 				<ul class="nav navbar-nav">
 					<li><a href="main"><i class="icon-home icon-white"></i>首页</a></li>
 					<li><a href="teacher"><i class="icon-user icon-white"></i>教师管理</a></li>
@@ -39,7 +35,7 @@ body {
 					<li><a href="/admin/system/config"><i class="icon-wrench icon-white"></i>系统配置</a></li>
 				</ul>
 				<ul class="nav navbar-nav pull-right">
-					<li><span class="brand"><small>欢迎，${name }</small></span></li>
+					<li><h4><b>欢迎，${name }</b></h4></li>
 					<li><a href="#" data-toggle="modal"
 		data-target=".bs-example-modal-sm"><i class="icon-pencil icon-white"></i>修改口令</a></li>
 					<li><a href="/admin/logout"><i class="icon-share icon-white"></i>退出</a></li>
@@ -59,18 +55,18 @@ body {
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title">修改口令</h4>
+					<h4 class="modal-title">修改密码</h4>
 				</div>
 				<div class="modal-body">
 				<form id="editPass" class="exam-form" method="post" action="/admin/password/edit">
 					<p>
 						<input type="hidden" name="name" value=${name } style="width:100%"/>
 						<br/>
-						<input type="password" name="oldpass" placeholder="原口令" style="width:100%"/>
+						<input type="password" name="oldpass" placeholder="原密码" style="width:100%"/>
 						<br/>
-						<input type="password" id="pass1" name="newpass1" placeholder="新口令" style="width:100%"/>
+						<input type="password" id="pass1" name="newpass1" placeholder="新密码" style="width:100%"/>
 						<br/>
-						<input type="password" id="pass2" name="newpass2" placeholder="重输新口令" style="width:100%"/>
+						<input type="password" id="pass2" name="newpass2" placeholder="重输新密码" style="width:100%"/>
 						<br/>
 						<input type="submit" class="btn btn-primary" value="修改" style="width:100%" onclick="editPassword"/>
 						<span id="span1"></span>
@@ -83,9 +79,7 @@ body {
 
 	<div class="container">
 
-		<h1>
-			<img src="../img/exam/exam-admin.png" /> 系统管理
-		</h1>
+		
 			<!-- <div class="exam-alert">没有设置管理员帐号，默认管理员帐号存在安全风险，请尽快处理！</div>
 			<br /> -->
 	</div>

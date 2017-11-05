@@ -12,17 +12,18 @@ import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
 import org.springframework.stereotype.Service;
 
-import henu.exam.pojo.ExamResult;
 import henu.exam.pojo.SystemConfig;
-import henu.exam.service.ManageSystemConfigService;
+import henu.exam.service.AdminManageSystemConfigService;
+import henu.exam.util.ExamResult;
 
 @Service
-public class ManageSystemConfigServiceImpl implements ManageSystemConfigService{
+public class AdminManageSystemConfigServiceImpl implements AdminManageSystemConfigService{
 
 	@Override
 	public SystemConfig getSystemConfig() {
 		try {
 			String path = "F:/JavaEE/WorkSpace4/systemconfig.xml";
+//			String path = "classpath*:/systemconfig/systemconfig.xml";
 			SAXReader reader = new SAXReader();
 			Document doc = reader.read(new File(path));
 			Element root = doc.getRootElement();

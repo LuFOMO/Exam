@@ -1,7 +1,7 @@
 package henu.exam.service;
 
-import henu.exam.pojo.ExamResult;
 import henu.exam.pojo.Pass;
+import henu.exam.util.ExamResult;
 
 public interface AdminBasicService {
 
@@ -10,7 +10,7 @@ public interface AdminBasicService {
 	 * @param name
 	 * @param pass
 	 */
-	public boolean adminLogin(String name, String pass);
+	public boolean adminLogin(String name, String pass) throws Exception;
 	
 	/**
 	 * 修改管理员口令

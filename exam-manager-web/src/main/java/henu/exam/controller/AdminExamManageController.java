@@ -7,9 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import henu.exam.pojo.ExamResult;
 import henu.exam.pojo.TbExam;
 import henu.exam.service.AdminExamManageService;
+import henu.exam.util.ExamResult;
+import henu.exam.util.ExceptionUtil;
 
 @Controller
 public class AdminExamManageController {
@@ -23,8 +24,14 @@ public class AdminExamManageController {
 	 */
 	@RequestMapping("/admin/exam/list")
 	@ResponseBody
-	public List<TbExam> getExamList(){
-		List<TbExam> examList = examManageService.getExamList();
+	public List<TbExam> getExamList() throws Exception{
+		List<TbExam> examList = null;
+		try {
+			examList = examManageService.getExamList();
+		} catch (Exception e) {
+			e.printStackTrace();
+			ExceptionUtil.getStackTrace(e);
+		}
 		return examList;
 	}
 	
@@ -35,7 +42,7 @@ public class AdminExamManageController {
 	 */
 	@RequestMapping("/admin/exam/clean")
 	@ResponseBody
-	public ExamResult cleanExam(Integer id){
+	public ExamResult cleanExam(Integer id) throws Exception{
 		ExamResult result = examManageService.cleanExam(id);
 		return result;
 	}
@@ -48,7 +55,7 @@ public class AdminExamManageController {
 	 */
 	@RequestMapping("/admin/exam/delete")
 	@ResponseBody
-	public ExamResult deleteExam(Integer[] ids){
+	public ExamResult deleteExam(Integer[] ids) throws Exception{
 		ExamResult result = examManageService.deleteExam(ids);
 		return result;
 	}

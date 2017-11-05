@@ -1,5 +1,7 @@
 package henu.exam.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 public interface StudentLoginService {
 
 	/**
@@ -8,5 +10,5 @@ public interface StudentLoginService {
 	 * @param name
 	 * @return
 	 */
-	public boolean studentLogin(String sid, String name);
+	public boolean studentLogin(String sid, String name,  HttpServletRequest request) throws Exception;
 }

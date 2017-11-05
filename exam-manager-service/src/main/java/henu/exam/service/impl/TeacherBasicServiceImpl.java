@@ -7,13 +7,13 @@ import org.springframework.stereotype.Service;
 
 import henu.exam.mapper.TbTeacherMapper;
 import henu.exam.pojo.Pass;
-import henu.exam.pojo.ExamResult;
 import henu.exam.pojo.TbAdmin;
 import henu.exam.pojo.TbAdminExample;
 import henu.exam.pojo.TbTeacher;
 import henu.exam.pojo.TbTeacherExample;
 import henu.exam.pojo.TbTeacherExample.Criteria;
 import henu.exam.service.TeacherBasicService;
+import henu.exam.util.ExamResult;
 
 @Service
 public class TeacherBasicServiceImpl implements TeacherBasicService{

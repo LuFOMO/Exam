@@ -2,8 +2,8 @@ package henu.exam.service;
 
 import java.util.List;
 
-import henu.exam.pojo.ExamResult;
 import henu.exam.pojo.TbExam;
+import henu.exam.util.ExamResult;
 
 public interface AdminExamManageService {
 
@@ -12,19 +12,19 @@ public interface AdminExamManageService {
 	 * @param exam
 	 * @return
 	 */
-	public List<TbExam> getExamList();
+	public List<TbExam> getExamList()throws Exception;
 	
 	/**
 	 * 清理考试
 	 * @param id
 	 * @return
 	 */
-	public ExamResult cleanExam(Integer id);
+	public ExamResult cleanExam(Integer id)throws Exception;
 	
 	/**
 	 * 删除已清理的考试
 	 * @param ids
 	 * @return
 	 */
-	public ExamResult deleteExam(Integer[] ids);
+	public ExamResult deleteExam(Integer[] ids)throws Exception;
 }

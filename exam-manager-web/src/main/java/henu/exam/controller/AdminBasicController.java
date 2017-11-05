@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import henu.exam.pojo.ExamResult;
 import henu.exam.pojo.Pass;
 import henu.exam.service.AdminBasicService;
+import henu.exam.util.ExamResult;
 
 //将model中保存的值复制一份到session中
 @SessionAttributes(value={"name"}, types=String.class)
@@ -28,7 +28,7 @@ public class AdminBasicController {
 	 * @return
 	 */
 	@RequestMapping(value="/admin/login", method=RequestMethod.POST)
-	public String adminLogin(Model model, String name, String pass){
+	public String adminLogin(Model model, String name, String pass) throws Exception{
 		boolean flag = basicService.adminLogin(name, pass);
 		if(flag){
 			model.addAttribute("name", name);

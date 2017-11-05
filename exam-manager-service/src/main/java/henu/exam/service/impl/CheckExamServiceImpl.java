@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import henu.exam.mapper.TbExamMapper;
-import henu.exam.pojo.ExamResult;
 import henu.exam.pojo.TbExam;
 import henu.exam.pojo.TbExamExample;
 import henu.exam.service.CheckExamService;
+import henu.exam.util.ExamResult;
 
 @Service
 public class CheckExamServiceImpl implements CheckExamService{

@@ -1,9 +1,0 @@
-0:0:0:0:0:0:0:1 - - [29/Oct/2017:18:42:12 +0800] "GET / HTTP/1.1" 200 3987 http-bio-8080-exec-1 1380
-0:0:0:0:0:0:0:1 - - [29/Oct/2017:18:42:13 +0800] "POST /exam/get HTTP/1.1" 200 64 http-bio-8080-exec-7 892
-0:0:0:0:0:0:0:1 - - [29/Oct/2017:18:42:17 +0800] "POST /admin/login HTTP/1.1" 200 5384 http-bio-8080-exec-8 407
-0:0:0:0:0:0:0:1 - - [29/Oct/2017:18:42:17 +0800] "GET /js/easyui/easyui-lang-zh_CN.js HTTP/1.1" 404 949 http-bio-8080-exec-9 11
-0:0:0:0:0:0:0:1 - - [29/Oct/2017:18:42:17 +0800] "GET /css/img/glyphicons-halflings-white.png HTTP/1.1" 404 949 http-bio-8080-exec-10 6
-0:0:0:0:0:0:0:1 - - [29/Oct/2017:18:42:19 +0800] "GET /admin/system/config HTTP/1.1" 302 - http-bio-8080-exec-10 111
-0:0:0:0:0:0:0:1 - - [29/Oct/2017:18:42:19 +0800] "GET /admin/config HTTP/1.1" 200 6482 http-bio-8080-exec-7 136
-0:0:0:0:0:0:0:1 - - [29/Oct/2017:18:42:19 +0800] "GET /js/easyui/easyui-lang-zh_CN.js HTTP/1.1" 404 949 http-bio-8080-exec-7 6
-0:0:0:0:0:0:0:1 - - [29/Oct/2017:18:42:19 +0800] "GET /js/easyui/easyui-lang-zh_CN.js HTTP/1.1" 404 949 http-bio-8080-exec-7 2

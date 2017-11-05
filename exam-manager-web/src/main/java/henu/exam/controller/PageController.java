@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import henu.exam.pojo.ExamResult;
 import henu.exam.service.CheckExamService;
+import henu.exam.util.ExamResult;
 
 @Controller
 public class PageController {
