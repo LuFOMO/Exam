@@ -5,8 +5,8 @@ public class SystemConfig {
 	private int interval;
 	private int pagesize;
 	private int timegap;
-	private long minfilesize;
-	private long maxfilesize;
+	private int minfilesize;
+	private int maxfilesize;
 	private String ck;
 	
 	
@@ -28,16 +28,16 @@ public class SystemConfig {
 	public void setTimegap(int timegap) {
 		this.timegap = timegap;
 	}
-	public long getMinfilesize() {
+	public int getMinfilesize() {
 		return minfilesize;
 	}
-	public void setMinfilesize(long minfilesize) {
+	public void setMinfilesize(int minfilesize) {
 		this.minfilesize = minfilesize;
 	}
-	public long getMaxfilesize() {
+	public int getMaxfilesize() {
 		return maxfilesize;
 	}
-	public void setMaxfilesize(long maxfilesize) {
+	public void setMaxfilesize(int maxfilesize) {
 		this.maxfilesize = maxfilesize;
 	}
 	public String getCk() {

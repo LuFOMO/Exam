@@ -1,4 +1,4 @@
-package henu.exam.pojo;
+package henu.exam.util;
 
 import java.util.List;
 

@@ -2,30 +2,15 @@ package henu.exam.pojo;
 
 import java.util.List;
 
-/**
- * easyUIDataGrid对象返回值
- * @version 1.0
- */
 public class EasyUIResult {
 
-	private Integer total;
-	
+	private long total;
 	private List<?> rows;
 	
-	public EasyUIResult(Integer total, List<?> rows) {
-		this.total = total;
-		this.rows = rows;
-	}
-	
-	public EasyUIResult(long total, List<?> rows) {
-		this.total = (int) total;
-		this.rows = rows;
-	}
-
-	public Integer getTotal() {
+	public long getTotal() {
 		return total;
 	}
-	public void setTotal(Integer total) {
+	public void setTotal(long total) {
 		this.total = total;
 	}
 	public List<?> getRows() {
@@ -34,6 +19,4 @@ public class EasyUIResult {
 	public void setRows(List<?> rows) {
 		this.rows = rows;
 	}
-	
-	
 }

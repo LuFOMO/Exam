@@ -1,7 +1,14 @@
 henu\exam\pojo\FileDetail.class
-henu\exam\pojo\Pass.class
+henu\exam\util\CntValueCache.class
+henu\exam\util\DownloadUtil.class
 henu\exam\util\ExceptionUtil.class
 henu\exam\pojo\EasyUIResult.class
-henu\exam\pojo\ExamResult.class
 henu\exam\pojo\SystemConfig.class
+henu\exam\pojo\FileResult.class
+henu\exam\util\FtpUtil.class
+henu\exam\pojo\Pass.class
+henu\exam\pojo\StudentMessage.class
+henu\exam\util\CntValueCache$1.class
+henu\exam\util\ExamResult.class
+henu\exam\util\FtpDeleteUtil.class
 henu\exam\util\JsonUtils.class
