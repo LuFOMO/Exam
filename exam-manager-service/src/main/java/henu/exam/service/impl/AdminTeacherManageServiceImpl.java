@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 
 import henu.exam.service.AdminTeacherManageService;
 import henu.exam.util.ExamResult;
@@ -30,12 +31,13 @@ public class AdminTeacherManageServiceImpl implements AdminTeacherManageService{
 			teacher.setIsAdmin("是");
 			TbAdmin admin = new TbAdmin();
 			admin.setName(teacher.getName());
-			admin.setPassword((teacher.getPassword()));
+			admin.setPassword(DigestUtils.md5DigestAsHex(teacher.getPassword().getBytes()));
 			admin.setFullname(teacher.getFullname());
 			adminMapper.insert(admin);
 		}else{
 			teacher.setIsAdmin("否");
 		}
+		teacher.setPassword(DigestUtils.md5DigestAsHex(teacher.getPassword().getBytes()));
 		int i = teacherMapper.insert(teacher);
 		if(i!=1){
 			return ExamResult.build(500, "新增教师失败");
@@ -61,7 +63,7 @@ public class AdminTeacherManageServiceImpl implements AdminTeacherManageService{
 			List<TbAdmin> adminList = adminMapper.selectByExample(example);
 			TbAdmin admin = new TbAdmin();
 			admin.setName(teacher.getName());
-			admin.setPassword((teacher.getPassword()));
+			admin.setPassword(DigestUtils.md5DigestAsHex(teacher.getPassword().getBytes()));
 			admin.setFullname(teacher.getFullname());
 			if (adminList==null ||adminList.size()== 0) {
 				adminMapper.insert(admin);
@@ -71,6 +73,7 @@ public class AdminTeacherManageServiceImpl implements AdminTeacherManageService{
 		}else{
 			teacher.setIsAdmin("否");
 		}
+		teacher.setPassword(DigestUtils.md5DigestAsHex(teacher.getPassword().getBytes()));
 		int i = teacherMapper.updateByPrimaryKey(teacher);
 		if(i!=1){
 			return ExamResult.build(500, "修改教师信息失败");

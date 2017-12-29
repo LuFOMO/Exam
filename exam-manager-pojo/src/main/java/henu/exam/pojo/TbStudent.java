@@ -11,6 +11,8 @@ public class TbStudent {
 
     private String clazz;
 
+    private Integer eid;
+
     private String ip;
 
     private String isLogin;
@@ -53,6 +55,14 @@ public class TbStudent {
 
     public void setClazz(String clazz) {
         this.clazz = clazz == null ? null : clazz.trim();
+    }
+
+    public Integer getEid() {
+        return eid;
+    }
+
+    public void setEid(Integer eid) {
+        this.eid = eid;
     }
 
     public String getIp() {

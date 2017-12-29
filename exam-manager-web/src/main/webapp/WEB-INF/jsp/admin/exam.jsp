@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <jsp:include page="header.jsp"></jsp:include>
-
+<div style="padding-top:70px;background-image:url('/img/exam/bg.png')">
+<div class="container" style="padding-top:50px">
 <table class="easyui-datagrid" id="examList" title="考试一览表"
 	data-options="singleSelect:false,collapsible:true,url:'/admin/exam/list',method:'get', toolbar:toolbar">
 	<thead>
@@ -20,25 +21,37 @@
 		</tr>
 	</thead>
 </table>
-
-<jsp:include page="footer.jsp" />
+</div>
+</div>
 
 <script type="text/javascript">
 
+	function getSelectionsIds(){
+		var examList = $("#examList");
+		var sels = examList.datagrid("getSelections");
+		var ids = [];
+		for(var i in sels){
+			if(sels[i].cleaned=='是'){
+				ids.push(sels[i].id);
+			}
+		}
+		ids = ids.join(",");
+		return ids;
+	}
 	var toolbar = [{
 	    text:'清理',
 	    iconCls:'icon-remove',
         handler:function(){
         	var examList = $("#examList");
-    		var sels = examList.datagrid("getSelections");
-        	if(ids.length == 0){
+        	var row = $('#examList').datagrid('getSelected');
+        	if(row.length == 0){
         		$.messager.alert('提示','未选中考试!');
         		return ;
         	}
-        	$.messager.confirm('确认','确定清理ID为 '+id+' 的考试吗？',function(r){
+        	$.messager.confirm('确认','确定清理ID为 '+row.id+' 的考试吗？',function(r){
         	    if (r){
-        	    	var params = {"id":id};
-                	$.post("/admin/exam/clean",params, function(data){
+        	    	var params = {"id":row.id};
+                	$.post("/admin/exam/clean", params, function(data){
             			if(data.status == 200){
             				$.messager.alert('提示','清理考试成功!',undefined,function(){
             					$("#examList").datagrid("reload");
@@ -52,15 +65,7 @@
        	text:'删除',
         iconCls:'icon-cancel',
         handler:function(){
-        	var examList = $("#examList");
-    		var sels = examList.datagrid("getSelections");
-    		var ids = [];
-    		for(var i in sels){
-    			if(i.cleaned=='是'){
-    				ids.push(sels[i].id);
-    			}
-    		}
-    		ids = ids.join(",");
+        	var ids = getSelectionsIds();
         	if(ids.length == 0){
         		$.messager.alert('提示','未选中考试!');
         		return ;
@@ -79,5 +84,6 @@
         	});
         }
     }];
-</script>	
+</script>
 
+<jsp:include page="footer.jsp" />

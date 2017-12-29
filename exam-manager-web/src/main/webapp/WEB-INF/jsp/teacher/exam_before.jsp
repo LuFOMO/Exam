@@ -1,57 +1,105 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="header.jsp" />
-<form id="examAdd" class="exam-form form-inline" action="/teacher/exam/add" enctype="multipart/form-data" method="post">
-	<h4>添加考试</h4>
-	<input type="text" name="ename" placeholder="考试名称*" size="20" />
-	<div class="controls input-append date" id="datetimepicker" data-link-field="etime" >
-		<input class="span2" size="16" type="text"  placeholder="考试时间*" readonly/> 
-		<span class="add-on"><i class="icon-remove"></i></span>
-		<span class="add-on"><i class="icon-th"></i></span>
-	</div>    
-	<input type="hidden" id="etime" name="etime" />
-	<input type="checkbox" name="eautostart" value="true"/> 自动开始&nbsp;
-	<input type="submit" class="btn btn-primary" value="添加" onclick="addExam()"/>
-</form>
+<%  
+	String path = request.getContextPath();  
+	String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;  
+%>
+<section style="background-image: url('<%=basePath%>/img/exam/bg.png');">
+<div class="container" style="padding-top:70px;">
 
-<table class="easyui-datagrid" id="examList" title="考试一览表"
-	data-options="singleSelect:false,collapsible:true,url:'/teacher/exam/list',method:'get', toolbar:toolbar">
-	<thead>
-		<tr>
-			<th data-options="field:'ck', checkbox:true">
-			<th data-options="field:'id', width:60">ID</th>
-			<th data-options="field:'name', width:190">考试名称</th>
-			<th data-options="field:'starttime', width:180">考试时间</th>
-			<th data-options="field:'teachname', width:120">创建人</th>
-			<th data-options="field:'exampaper', width:180">上传试卷</th>
-			<th data-options="field:'autostart', width:120">自动开始</th>
-			<th data-options="field:'started', width:120">进行中</th>
-			<th data-options="field:'finished', width:120">已结束</th>
-			<th data-options="field:'archived', width:120">已归档</th>
-			<th data-options="field:'cleaned', width:120">已清理</th>
-		</tr>
-	</thead>
-</table>
+<div class="panel panel-default">
+		<div class="panel-heading">
+			<h2 class="panel-title">添加考试</h2>
+		</div>
+		<div class="panel-body text-center">
+		<br>
+			<form id="examAdd" class="form-inline" method="post">
+				<div class="form-group">
+					<input class="form-control" type="hidden" name="teachname" value="${name }" />
+					<input class="form-control" type="text" name="name" placeholder="考试名称" size="20" /><br>
+				</div>
+					<div class="form-group">		
+						<div class="input-group date" id="datetimepicker">
+	    					<input class="form-control" size="20" type="text" name="starttime" placeholder="考试时间" readonly>					
+	   						 <span class="input-group-addon">  
+	                    		<span class="glyphicon glyphicon-calendar"></span>  
+	                		 </span>
+	                		 <span class="input-group-addon">  
+	                    		<span class="glyphicon glyphicon-remove"></span>  
+	                		 </span>	 
+						</div>
+					</div>
+				<div class="form-group">	
+					<input type="checkbox" name="autostart" /> 自动开始&nbsp; 
+					<input type="button" class="btn btn-md btn-primary" value="添加" onclick="addExam()" />
+				</div>
+			</form>
+			<br>
+		</div>
+	</div>
+	<br>
+	<table class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<th class="col-md-3">考试名称</th>
+				<th class="col-md-3">考试时间</th>
+				<th>创建人</th>
+				<th>上传试卷</th>
+				<th>自动开始</th>
+				<th>进行中</th>
+				<th>已结束</th>
+				<th>已归档</th>
+				<th>已清理</th>
+				<th>&nbsp;</th>
+			</tr>
+		</thead>
+		<tbody>
+		<c:forEach items="${examList }" var="exam">
+			<tr>
+				<td>${exam.name }</td>
+				<td>${exam.starttime }</td>
+				<td>${exam.teachname }</td>
+				<td>${exam.exampaper }</td>
+				<td>${exam.autostart }</td>
+				<td>${exam.started }</td>
+				<td>${exam.finished }</td>
+				<td>${exam.archived }</td>
+				<td>${exam.cleaned }</td>
+				<td>
+					<a class="btn" title="编辑" href="/teacher/exam/edit/${exam.id }"><span class="glyphicon glyphicon-edit"></span></a>
+				</td>
+			</tr>
+		</c:forEach>
+		</tbody>
+	</table>
+</div>
+</section>
 
-<jsp:include page="footer.jsp" />
-
+<script type="text/javascript" src="<%=basePath %>/js/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="<%=basePath %>/js/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=basePath %>/js/bootstrap/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript">
-	function addExam(){
-		$.post("/teacher/exam/add", $("examAdd").serialize(), function(data){
-			if(data.status == 200){
-				$.messager.alert('提示','新增教师成功!', undefined, function(){
-					$("#examList").datagrid("reload");
-				});
-			});
-	}
 
 	$("#datetimepicker").datetimepicker({
-	    format: "yyyy-mm-dd hh:ii",
-	    autoclose: true,
-	    todayBtn: true,
-	    minuteStep: 10,
-	    minView:0,
-	    pickerPosition:'bottom-left',
-	    language:'zh-CN'
-	});
+			format: "yyyy-mm-dd hh:ii", //选择日期后，文本框显示的日期格式
+			language: 'zh-CN', //汉化
+			autoclose:true, //选择日期后自动关闭
+     		pickerPosition: "bottom-right"
+    });
+    	
+	function addExam() {
+		$.post("/teacher/exam/add", $("#examAdd").serialize(), function(data) {
+			if (data.status == 200) {
+				$.messager.alert('提示', '新增考试成功!', undefined, function() {
+					window.location.href="/teacher/exam/list";
+				});
+			}
+			if(data.status==500){
+				$.messager.alert('提示', '新增考试失败!');
+			}
+		});
+	}
 </script>
+<jsp:include page="footer.jsp" />

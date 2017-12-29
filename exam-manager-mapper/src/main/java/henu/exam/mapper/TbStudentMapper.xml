@@ -6,6 +6,7 @@
     <result column="sid" property="sid" jdbcType="VARCHAR" />
     <result column="NAME" property="name" jdbcType="VARCHAR" />
     <result column="clazz" property="clazz" jdbcType="VARCHAR" />
+    <result column="eid" property="eid" jdbcType="INTEGER" />
     <result column="ip" property="ip" jdbcType="VARCHAR" />
     <result column="is_login" property="isLogin" jdbcType="VARCHAR" />
     <result column="ipbinding" property="ipbinding" jdbcType="VARCHAR" />
@@ -72,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, sid, NAME, clazz, ip, is_login, ipbinding, is_submit, submittime, submit_url
+    id, sid, NAME, clazz, eid, ip, is_login, ipbinding, is_submit, submittime, submit_url
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="henu.exam.pojo.TbStudentExample" >
     select
@@ -106,11 +107,11 @@
   </delete>
   <insert id="insert" parameterType="henu.exam.pojo.TbStudent" >
     insert into tb_student (id, sid, NAME, 
-      clazz, ip, is_login, 
+      clazz, eid, ip, is_login, 
       ipbinding, is_submit, submittime, 
       submit_url)
     values (#{id,jdbcType=INTEGER}, #{sid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{clazz,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{isLogin,jdbcType=VARCHAR}, 
+      #{clazz,jdbcType=VARCHAR}, #{eid,jdbcType=INTEGER}, #{ip,jdbcType=VARCHAR}, #{isLogin,jdbcType=VARCHAR}, 
       #{ipbinding,jdbcType=VARCHAR}, #{isSubmit,jdbcType=VARCHAR}, #{submittime,jdbcType=TIMESTAMP}, 
       #{submitUrl,jdbcType=VARCHAR})
   </insert>
@@ -128,6 +129,9 @@
       </if>
       <if test="clazz != null" >
         clazz,
+      </if>
+      <if test="eid != null" >
+        eid,
       </if>
       <if test="ip != null" >
         ip,
@@ -160,6 +164,9 @@
       </if>
       <if test="clazz != null" >
         #{clazz,jdbcType=VARCHAR},
+      </if>
+      <if test="eid != null" >
+        #{eid,jdbcType=INTEGER},
       </if>
       <if test="ip != null" >
         #{ip,jdbcType=VARCHAR},
@@ -202,6 +209,9 @@
       <if test="record.clazz != null" >
         clazz = #{record.clazz,jdbcType=VARCHAR},
       </if>
+      <if test="record.eid != null" >
+        eid = #{record.eid,jdbcType=INTEGER},
+      </if>
       <if test="record.ip != null" >
         ip = #{record.ip,jdbcType=VARCHAR},
       </if>
@@ -231,6 +241,7 @@
       sid = #{record.sid,jdbcType=VARCHAR},
       NAME = #{record.name,jdbcType=VARCHAR},
       clazz = #{record.clazz,jdbcType=VARCHAR},
+      eid = #{record.eid,jdbcType=INTEGER},
       ip = #{record.ip,jdbcType=VARCHAR},
       is_login = #{record.isLogin,jdbcType=VARCHAR},
       ipbinding = #{record.ipbinding,jdbcType=VARCHAR},
@@ -252,6 +263,9 @@
       </if>
       <if test="clazz != null" >
         clazz = #{clazz,jdbcType=VARCHAR},
+      </if>
+      <if test="eid != null" >
+        eid = #{eid,jdbcType=INTEGER},
       </if>
       <if test="ip != null" >
         ip = #{ip,jdbcType=VARCHAR},
@@ -279,6 +293,7 @@
     set sid = #{sid,jdbcType=VARCHAR},
       NAME = #{name,jdbcType=VARCHAR},
       clazz = #{clazz,jdbcType=VARCHAR},
+      eid = #{eid,jdbcType=INTEGER},
       ip = #{ip,jdbcType=VARCHAR},
       is_login = #{isLogin,jdbcType=VARCHAR},
       ipbinding = #{ipbinding,jdbcType=VARCHAR},

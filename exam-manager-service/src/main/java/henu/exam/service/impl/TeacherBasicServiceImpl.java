@@ -4,11 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 
 import henu.exam.mapper.TbTeacherMapper;
 import henu.exam.pojo.Pass;
-import henu.exam.pojo.TbAdmin;
-import henu.exam.pojo.TbAdminExample;
 import henu.exam.pojo.TbTeacher;
 import henu.exam.pojo.TbTeacherExample;
 import henu.exam.pojo.TbTeacherExample.Criteria;
@@ -30,7 +29,7 @@ public class TeacherBasicServiceImpl implements TeacherBasicService{
 		TbTeacher teacher = null;
 		if(teacherList!=null && teacherList.size()>0){
 			teacher = teacherList.get(0);
-			if(pass.equals(teacher.getPassword())){
+			if(teacher.getPassword().equals(DigestUtils.md5DigestAsHex(pass.getBytes()))){
 				return true;
 			}
 		}
@@ -48,8 +47,8 @@ public class TeacherBasicServiceImpl implements TeacherBasicService{
 		if(teacherList!=null && teacherList.size()>0){
 			teacher = teacherList.get(0);
 		}
-		if(pass.getOldpass().equals(teacher.getPassword())){
-			teacher.setPassword(pass.getNewpass1());
+		if(pass.getOldpass().equals(DigestUtils.md5DigestAsHex(teacher.getPassword().getBytes()))){
+			teacher.setPassword(DigestUtils.md5DigestAsHex(pass.getNewpass1().getBytes()));
 			teacherMapper.updateByPrimaryKey(teacher);
 		}
 		return ExamResult.ok();

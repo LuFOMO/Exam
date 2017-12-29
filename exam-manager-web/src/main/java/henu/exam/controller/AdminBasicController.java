@@ -1,19 +1,16 @@
 package henu.exam.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 
 import henu.exam.pojo.Pass;
 import henu.exam.service.AdminBasicService;
-import henu.exam.util.ExamResult;
 
-//将model中保存的值复制一份到session中
-@SessionAttributes(value={"name"}, types=String.class)
 @Controller
 public class AdminBasicController {
 
@@ -28,10 +25,10 @@ public class AdminBasicController {
 	 * @return
 	 */
 	@RequestMapping(value="/admin/login", method=RequestMethod.POST)
-	public String adminLogin(Model model, String name, String pass) throws Exception{
+	public String adminLogin(String name, String pass, HttpServletRequest request) throws Exception{
 		boolean flag = basicService.adminLogin(name, pass);
 		if(flag){
-			model.addAttribute("name", name);
+			request.getSession().setAttribute("name", name);
 			return "/admin/main";
 		}else{
 			return "redirect:/";
@@ -40,13 +37,13 @@ public class AdminBasicController {
 	
 	/**
 	 * 管理员退出
-	 * @param session
-	 * @param sessionStatus 可以通过SessionStatus.setComplete()清除@SessionAttributes
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping("/admin/logout")
-	public String adminLogut(SessionStatus sessionStatus){
-		sessionStatus.setComplete();
+	public String adminLogut(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		session.removeAttribute("name");
 		return "redirect:/";
 	}
 	
@@ -57,9 +54,10 @@ public class AdminBasicController {
 	 * @return
 	 */
 	@RequestMapping("/admin/password/edit")
-	public String adminEditPass(Pass pass, SessionStatus sessionStatus){
-		ExamResult result = basicService.adminEditPass(pass);
-		sessionStatus.setComplete();
+	public String adminEditPass(Pass pass, HttpServletRequest request){
+		basicService.adminEditPass(pass);
+		HttpSession session = request.getSession();
+		session.removeAttribute("name");
 		return "redirect:/";
 	}
 }

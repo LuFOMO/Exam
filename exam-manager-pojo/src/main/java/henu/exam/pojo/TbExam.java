@@ -1,17 +1,15 @@
 package henu.exam.pojo;
 
-import java.util.Date;
-
 public class TbExam {
     private Integer id;
 
     private String name;
 
-    private Integer studentNum;
-
     private String teachname;
 
-    private Date starttime;
+    private String starttime;
+
+    private String endtime;
 
     private String autostart;
 
@@ -43,14 +41,6 @@ public class TbExam {
         this.name = name == null ? null : name.trim();
     }
 
-    public Integer getStudentNum() {
-        return studentNum;
-    }
-
-    public void setStudentNum(Integer studentNum) {
-        this.studentNum = studentNum;
-    }
-
     public String getTeachname() {
         return teachname;
     }
@@ -59,12 +49,20 @@ public class TbExam {
         this.teachname = teachname == null ? null : teachname.trim();
     }
 
-    public Date getStarttime() {
+    public String getStarttime() {
         return starttime;
     }
 
-    public void setStarttime(Date starttime) {
-        this.starttime = starttime;
+    public void setStarttime(String starttime) {
+        this.starttime = starttime == null ? null : starttime.trim();
+    }
+
+    public String getEndtime() {
+        return endtime;
+    }
+
+    public void setEndtime(String endtime) {
+        this.endtime = endtime == null ? null : endtime.trim();
     }
 
     public String getAutostart() {

@@ -1,125 +1,144 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <jsp:include page="header.jsp" />
-
-<p class="exam-info">完成学生名单的导入和修改后，
-	<a class="btn" href="teacher_exam_modify?id=<s:property value="eid" />"><i class="icon-edit"></i>返回编辑</a>
+<div style="background-image: url('/img/exam/bg.png');padding-top:70px;">
+<div  class="container">
+<p class="exam-info">
+	完成学生名单的导入和修改后，
+	 <a class="btn" href="/teacher/exam_modify"><span class="danger glyphicon glyphicon-edit">返回编辑</span></a>
 </p>
 
-<form class="exam-form form-inline" action="teacher_student_insert"
-	method="post">
-	<h4>添加单个学生</h4>
-	<input type="text" name="sno" placeholder="学号*" size="20" />
-	<input type="text" name="sname" placeholder="姓名*" size="20" />
-	<input type="text" name="sclass" placeholder="班级" size="20" />
-	<input type="hidden" name="eid" value="<s:property value="eid"/>" />
-	<input type="submit" class="btn btn-primary" value="添加" />
-</form>
+<table class="easyui-datagrid" id="studentsList" title="学生信息表" 
+       data-options="singleSelect:false,collapsible:true,pagination:true,url:'/teacher/student/list',method:'get',pageSize:${pagesize },toolbar:toolbar">
+    <thead>
+        <tr>
+        	<th data-options="field:'ck',checkbox:true"></th>
+        	<th data-options="field:'id',width:100">id</th>
+            <th data-options="field:'sid',width:300">学号</th>
+            <th data-options="field:'name',width:200">姓名</th>
+            <th data-options="field:'clazz',width:100">班级</th>
+            <th data-options="field:'rk',width:580">备注</th>
+        </tr>
+    </thead>
+</table>
 
-<div class="container-fluid">
-	<div class="row-fluid">
-		<div class="span6">
-			<form class="form-inline" action="teacher_student" method="post">
-				分页大小 <input type="text" name="pageSize"
-					value="<s:property value="#session.pageSize" />"
-					class="input-small" /> <input type="submit" class="btn" value="设置" />
-			</form>
+<!-- 添加单个学生信息 -->
+<div id="studentAdd" class="easyui-dialog"
+	style="width: 500px; height: 300px; padding-top: 50px; text-align: center"
+	closed="true" buttons="#studentAdd-buttons">
+	<form id="ssAdd" method="post">
+		<div class="control-group">
+			<div class="controls">
+				<label class="control-label text-right">学号</label> 
+				<input type="text" name="sid" />
+			</div>
 		</div>
-		<div class="pull-right">
-			<form class="form-inline" action="teacher_student" method="get">
-				<a title="第一页"
-					<s:if test="pageNo==1">href="javascript: void(0)" class="btn disabled"</s:if>
-					<s:else>href="teacher_student?eid=<s:property value="eid"/>&pageNo=1" class="btn"	</s:else>">
-					<i class="icon-fast-backward"></i>
-				</a>
-				<a title="前一页"
-					<s:if test="pageNo==1">href="javascript: void(0)" class="btn disabled"</s:if>
-					<s:else>href="teacher_student?eid=<s:property value="eid"/>&pageNo=<s:property value="pageNo-1"/>" class="btn"	</s:else>">
-					<i class="icon-step-backward"></i>
-				</a>
-				<input type="hidden" name="eid" value="<s:property value="eid"/>" />
-				<input type="text" name="pageNo"
-					placeholder="<s:property value="pageNo"/>/<s:property value="pageCount"/>"
-					class="input-small" />
-				<button type="submit" title="前往" class="btn">
-					<i class="icon-play"></i>
-				</button>
-				<a title="后一页"
-					<s:if test="pageNo==pageCount">href="javascript: void(0)" class="btn disabled"</s:if>
-					<s:else>href="teacher_student?eid=<s:property value="eid"/>&pageNo=<s:property value="pageNo+1"/>" class="btn"</s:else>">
-					<i class="icon-step-forward"></i>
-				</a>
-				<a title="最后一页"
-					<s:if test="pageNo==pageCount">href="javascript: void(0)" class="btn disabled"</s:if>
-					<s:else>href="teacher_student?eid=<s:property value="eid"/>&pageNo=<s:property value="pageCount"/>" class="btn"</s:else>">
-					<i class="icon-fast-forward"></i>
-				</a>
-			</form>
+		<br>
+		<div class="control-group">
+			<div class="controls">
+				<label class="control-label text-right">姓名</label> 
+				<input type="text" name="name" />
+			</div>
 		</div>
-	</div>
-	<div class="row-fluid">
-		<table class="table table-striped table-bordered">
-			<thead>
-				<tr>
-					<th class="span4">学号</th>
-					<th class="span4">姓名</th>
-					<th class="span3">班级</th>
-					<th>&nbsp;</th>
-				</tr>
-			</thead>
-			<tbody>
-				<s:iterator value="slist">
-					<tr>
-						<td><s:property value="sno" /></td>
-						<td><s:property value="sname" /></td>
-						<td><s:property value="sclass" /></td>
-						<td><a href="teacher_student_delete?eid=<s:property value="eid"/>&id=<s:property value="id" />"><i
-								class="icon-trash" title="删除"></i></a></td>
-					</tr>
-				</s:iterator>
-			</tbody>
-		</table>
-	</div>
-	<div class="row-fluid">
-		<div class="pull-right">
-			<form class="form-inline" action="teacher_student" method="get">
-				<a title="第一页"
-					<s:if test="pageNo==1">href="javascript: void(0)" class="btn disabled"</s:if>
-					<s:else>href="teacher_student?eid=<s:property value="eid"/>&pageNo=1" class="btn"	</s:else>">
-					<i class="icon-fast-backward"></i>
-				</a>
-				<a title="前一页"
-					<s:if test="pageNo==1">href="javascript: void(0)" class="btn disabled"</s:if>
-					<s:else>href="teacher_student?eid=<s:property value="eid"/>&pageNo=<s:property value="pageNo-1"/>" class="btn"	</s:else>">
-					<i class="icon-step-backward"></i>
-				</a>
-				<input type="hidden" name="eid" value="<s:property value="eid"/>" />
-				<input type="text" name="pageNo"
-					placeholder="<s:property value="pageNo"/>/<s:property value="pageCount"/>"
-					class="input-small" />
-				<button type="submit" title="前往" class="btn">
-					<i class="icon-play"></i>
-				</button>
-				<a title="后一页"
-					<s:if test="pageNo==pageCount">href="javascript: void(0)" class="btn disabled"</s:if>
-					<s:else>href="teacher_student?eid=<s:property value="eid"/>&pageNo=<s:property value="pageNo+1"/>" class="btn"</s:else>">
-					<i class="icon-step-forward"></i>
-				</a>
-				<a title="最后一页"
-					<s:if test="pageNo==pageCount">href="javascript: void(0)" class="btn disabled"</s:if>
-					<s:else>href="teacher_student?eid=<s:property value="eid"/>&pageNo=<s:property value="pageCount"/>" class="btn"</s:else>">
-					<i class="icon-fast-forward"></i>
-				</a>
-			</form>
+		<br>
+		<div class="control-group">
+			<div class="controls">
+				<label class="control-label text-right">班级</label> 
+				<input type="text" name="clazz" />
+			</div>
 		</div>
-	</div>
+		<div class="control-group">
+			<div class="controls">
+				<input type="button" class="btn btn-md btn-primary" value="添加" onclick="addStudent()" />
+			</div>
+		</div>
+	</form>
 </div>
-<form class="exam-form form-inline" action="teacher_student_upload"
-	enctype="multipart/form-data" method="post">
+<div style="padding-top:20px;">
+<form id="ssAddAll" class=" form-inline" enctype="multipart/form-data" method="post">
 	<h4>批量导入学生名单</h4>
-	<input type="hidden" name="eid" value="<s:property value="eid"/>" />
-	<input type="file" name="students" /> <input type="submit"
-		class="btn btn-primary" value="导入" />
+	<input type="hidden" name="eid" value="${exam.id }" /> 
+	<input type="file" name="file" />
+	<br>
+	<input type="button" class="btn btn-primary" value="导入" onclick="addAllStudents()"/>
+	<br>
 </form>
-
+</div>
+</div>
+</div>
+<script>
+    function getSelectionsIds(){
+    	var studentsList = $("#studentsList");
+    	var sels = studentsList.datagrid("getSelections");
+    	var ids = [];
+    	for(var i in sels){
+    		ids.push(sels[i].id);
+    	}
+    	ids = ids.join(",");
+    	return ids;
+    }
+    
+    var toolbar = [{
+        text:'新增',
+        iconCls:'icon-add',
+        handler:function(){
+		    $('#studentAdd').dialog('open').dialog('setTitle','添加学生信息');
+	    }
+    },{
+        text:'删除',
+        iconCls:'icon-cancel',
+        handler:function(){
+        	var ids = getSelectionsIds();
+        	if(ids.length == 0){
+        		$.messager.alert('提示','未选中信息!');
+        		return ;
+        	}
+        	$.messager.confirm('确认','确定删除ID为 '+ids+' 的学生信息吗？',function(r){
+        	    if (r){
+        	    	var params = {"ids":ids};
+                	$.post("/teacher/student/delete",params, function(data){
+            			if(data.status == 200){
+            				$.messager.alert('提示','删除学生信息成功!',undefined,function(){
+            					$("#studentsList").datagrid("reload");
+            				});
+            			}
+            		});
+        	    }
+        	});
+        }
+    }];
+    
+    function addStudent(){
+    	$.post("/teacher/manage/student/add", $("#ssAdd").serialize(), function(data){
+			if(data.status == 200){
+				$.messager.alert('提示','添加学生信息成功!', undefined, function(){
+					$('#studentAdd').dialog('close');	
+					$("#studentsList").datagrid("reload");
+				});
+			}
+		});
+    }
+        
+    function addAllStudents(){
+    	$.ajax({
+            url: "/teacher/student/addAll",
+            type: 'POST',
+            cache: false,
+            data: new FormData($('#ssAddAll')[0]),
+            processData: false,
+            contentType: false,
+            dataType:"json",
+            success : function(data) {
+                if (data.status == 200) {
+                	$.messager.alert('提示','导入学生信息成功!', undefined, function(){
+    					$("#studentsList").datagrid("reload");
+    				});
+                }
+                if(data.status == 500){
+    				$.messager.alert('提示','导入学生信息失败!');
+    			}
+            }
+        });
+    }
+</script>
 <jsp:include page="footer.jsp" />

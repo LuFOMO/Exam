@@ -5,7 +5,6 @@
     <artifactId>exam-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>henu.exam</groupId>
   <artifactId>exam-manager</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>

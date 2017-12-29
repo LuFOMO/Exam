@@ -375,6 +375,66 @@ public class TbStudentExample {
             return (Criteria) this;
         }
 
+        public Criteria andEidIsNull() {
+            addCriterion("eid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEidIsNotNull() {
+            addCriterion("eid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEidEqualTo(Integer value) {
+            addCriterion("eid =", value, "eid");
+            return (Criteria) this;
+        }
+
+        public Criteria andEidNotEqualTo(Integer value) {
+            addCriterion("eid <>", value, "eid");
+            return (Criteria) this;
+        }
+
+        public Criteria andEidGreaterThan(Integer value) {
+            addCriterion("eid >", value, "eid");
+            return (Criteria) this;
+        }
+
+        public Criteria andEidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("eid >=", value, "eid");
+            return (Criteria) this;
+        }
+
+        public Criteria andEidLessThan(Integer value) {
+            addCriterion("eid <", value, "eid");
+            return (Criteria) this;
+        }
+
+        public Criteria andEidLessThanOrEqualTo(Integer value) {
+            addCriterion("eid <=", value, "eid");
+            return (Criteria) this;
+        }
+
+        public Criteria andEidIn(List<Integer> values) {
+            addCriterion("eid in", values, "eid");
+            return (Criteria) this;
+        }
+
+        public Criteria andEidNotIn(List<Integer> values) {
+            addCriterion("eid not in", values, "eid");
+            return (Criteria) this;
+        }
+
+        public Criteria andEidBetween(Integer value1, Integer value2) {
+            addCriterion("eid between", value1, value2, "eid");
+            return (Criteria) this;
+        }
+
+        public Criteria andEidNotBetween(Integer value1, Integer value2) {
+            addCriterion("eid not between", value1, value2, "eid");
+            return (Criteria) this;
+        }
+
         public Criteria andIpIsNull() {
             addCriterion("ip is null");
             return (Criteria) this;
